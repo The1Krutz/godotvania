@@ -4,6 +4,7 @@ public class Simon : KinematicBody2D {
   private int speed = 100;
   private int jumpForce = 300;
   private int gravity = 1000;
+  private float jumpX = 0;
 
   private Vector2 velocity = new Vector2();
 
@@ -22,6 +23,7 @@ public class Simon : KinematicBody2D {
     // movement handling
     if (IsOnFloor()) {
       velocity.x = 0;
+      jumpX = 0;
       if (Input.IsActionPressed("move_left")) {
         velocity.x -= speed;
         isWalking = true;
@@ -32,8 +34,15 @@ public class Simon : KinematicBody2D {
       }
       if (Input.IsActionJustPressed("jump")) {
         velocity.y -= jumpForce;
+        jumpX = velocity.x;
       }
       isDucking = Input.IsActionPressed("move_down");
+    } else {
+      /*
+       * override the normal physics calculations for X motion while in the air.
+       * this lets you jump in corners, and also makes you fall straight down instead of in a gentle physics arc
+       */
+      velocity.x = jumpX;
     }
 
     // physics stuff for movement
