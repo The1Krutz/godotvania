@@ -19,9 +19,18 @@ public class Simon : KinematicBody2D {
   public override void _PhysicsProcess(float delta) {
     bool isWalking = false;
     bool isDucking = false;
+    bool isWhipping = false;
+    bool isOnStairs = false;
+    bool isJumping = !IsOnFloor();
 
     // movement handling
-    if (IsOnFloor()) {
+    if (isJumping) {
+      /*
+       * override the normal physics calculations for X motion while in the air.
+       * this lets you jump in corners, and also makes you fall straight down instead of in a gentle physics arc
+       */
+      velocity.x = jumpX;
+    } else {
       velocity.x = 0;
       jumpX = 0;
       if (Input.IsActionPressed("move_left")) {
@@ -37,12 +46,6 @@ public class Simon : KinematicBody2D {
         jumpX = velocity.x;
       }
       isDucking = Input.IsActionPressed("move_down");
-    } else {
-      /*
-       * override the normal physics calculations for X motion while in the air.
-       * this lets you jump in corners, and also makes you fall straight down instead of in a gentle physics arc
-       */
-      velocity.x = jumpX;
     }
 
     // physics stuff for movement
@@ -50,14 +53,14 @@ public class Simon : KinematicBody2D {
     velocity = MoveAndSlide(velocity, Vector2.Up);
 
     // animation swapping
-    if (IsOnFloor() && !isWalking && !isDucking) {
-      animationPlayer.Play("stand");
-    } else if (!IsOnFloor()) {
+    if (isJumping) {
       animationPlayer.Play("jump");
     } else if (isWalking) {
       animationPlayer.Play("walk");
     } else if (isDucking) {
       animationPlayer.Play("jump");
+    } else {
+      animationPlayer.Play("stand");
     }
 
     // sprite faces the right way
