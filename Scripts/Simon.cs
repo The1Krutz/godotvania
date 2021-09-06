@@ -1,10 +1,13 @@
 using Godot;
 
 public class Simon : KinematicBody2D {
-  private int speed = 100;
-  private int jumpForce = 300;
-  private int gravity = 1000;
+  private int speed = 80;
+  private int jumpForce = 250;
+  private int gravity = 800;
   private float jumpX = 0;
+
+  [Export]
+  private bool isWhipping = false; // controlled by the animation player
 
   private Vector2 velocity = new Vector2();
 
@@ -35,10 +38,12 @@ public class Simon : KinematicBody2D {
       jumpX = 0;
       if (Input.IsActionPressed("move_left")) {
         velocity.x -= speed;
+        sprite.Scale = new Vector2(1, 1);
         isWalking = true;
       }
       if (Input.IsActionPressed("move_right")) {
         velocity.x += speed;
+        sprite.Scale = new Vector2(-1, 1);
         isWalking = true;
       }
       if (Input.IsActionJustPressed("jump")) {
@@ -61,13 +66,6 @@ public class Simon : KinematicBody2D {
       animationPlayer.Play("jump");
     } else {
       animationPlayer.Play("stand");
-    }
-
-    // sprite faces the right way
-    if (velocity.x > 0) {
-      sprite.Scale = new Vector2(-1, 1);
-    } else if (velocity.x < 0) {
-      sprite.Scale = new Vector2(1, 1);
     }
   }
 }

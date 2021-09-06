@@ -9,7 +9,7 @@ extents = Vector2( 8, 15 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 11 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=3]
 resource_name = "downstairs"
 length = 0.3
 loop = true
@@ -51,8 +51,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "jump"
+[sub_resource type="Animation" id=4]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -91,8 +90,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "stand"
+[sub_resource type="Animation" id=5]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -173,8 +171,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "walk"
+[sub_resource type="Animation" id=7]
 length = 0.6
 loop = true
 step = 0.15
@@ -228,11 +225,11 @@ shape = SubResource( 2 )
 disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/downstairs = SubResource( 7 )
-anims/jump = SubResource( 3 )
-anims/stand = SubResource( 4 )
+anims/downstairs = SubResource( 3 )
+anims/jump = SubResource( 4 )
+anims/stand = SubResource( 5 )
 anims/upstairs = SubResource( 6 )
-anims/walk = SubResource( 5 )
+anims/walk = SubResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -16 )
