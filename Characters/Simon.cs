@@ -1,4 +1,3 @@
-using System.Dynamic;
 using Godot;
 
 public class Simon : KinematicBody2D {
