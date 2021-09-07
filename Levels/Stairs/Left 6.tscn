@@ -5,11 +5,11 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12, 8 )
 
-[node name="stairs 6-UR" type="Node2D"]
+[node name="stairs Left 6" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="bottom" type="Area2D" parent="."]
-position = Vector2( 4, -8 )
+position = Vector2( -4, -8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bottom"]
 shape = SubResource( 1 )
@@ -18,7 +18,7 @@ __meta__ = {
 }
 
 [node name="top" type="Area2D" parent="."]
-position = Vector2( 92, -104 )
+position = Vector2( -92, -104 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="top"]
 shape = SubResource( 1 )
@@ -27,7 +27,7 @@ __meta__ = {
 }
 
 [node name="path" type="Line2D" parent="."]
-points = PoolVector2Array( 0, 0, 96, -96 )
+points = PoolVector2Array( 0, 0, -96, -96 )
 width = 1.0
 default_color = Color( 0.4, 0.501961, 1, 0 )
 
