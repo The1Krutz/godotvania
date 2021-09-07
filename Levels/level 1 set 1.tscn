@@ -123,11 +123,11 @@ __meta__ = {
 
 [node name="stairs" type="Node2D" parent="."]
 
-[node name="stairs 4-UR2" parent="stairs" instance=ExtResource( 3 )]
-position = Vector2( 832, 80 )
-
 [node name="stairs 4-UR" parent="stairs" instance=ExtResource( 3 )]
 position = Vector2( 336, 160 )
+
+[node name="stairs 4-UR2" parent="stairs" instance=ExtResource( 3 )]
+position = Vector2( 832, 80 )
 
 [node name="stairs 4-UL" parent="stairs" instance=ExtResource( 4 )]
 position = Vector2( 560, 160 )

@@ -7,15 +7,12 @@ public class Simon : KinematicBody2D {
   private int gravity = 800;
   private float jumpX = 0;
 
-  private bool isOnStairs = false;
+  private StairsInfo currentStairs;
   private bool needsLerpStairsBottom = false;
   private bool needsLerpStairsTop = false;
 
-  private Vector2 upStairsDirection;
-  public bool NearStairsBottom { get; set; } = false;
-  public bool NearStairsTop { get; set; } = false;
-  public Vector2 StairsBottom { get; set; } = new Vector2();
-  public Vector2 StairsTop { get; set; } = new Vector2();
+  public StairsInfo NearStairsBottom { get; set; }
+  public StairsInfo NearStairsTop { get; set; }
 
   [Export]
   private bool isWhipping = false; // controlled by the animation player
@@ -37,46 +34,43 @@ public class Simon : KinematicBody2D {
     bool isGoingUpStairs = false;
 
     // movement handling
-    if (isOnStairs) {
+    if (currentStairs != null) {
       isJumping = false;
-      upStairsDirection = StairsBottom.DirectionTo(StairsTop);
-      GetAlternateStairsInputs(out string alternateDownInput, out string alternateUpInput, out Vector2 upScale, out Vector2 downScale);
+
+      if (Input.IsActionPressed("move_up") || Input.IsActionPressed(currentStairs.AlternateUpInput)) {
+        velocity = currentStairs.UpStairsDirection * stairsSpeed;
+        sprite.Scale = currentStairs.UpScale;
+        isWalking = true;
+        isGoingUpStairs = true;
+      } else if (Input.IsActionPressed("move_down") || Input.IsActionPressed(currentStairs.AlternateDownInput)) {
+        velocity = currentStairs.UpStairsDirection * stairsSpeed * -1;
+        sprite.Scale = currentStairs.DownScale;
+        isWalking = true;
+      } else {
+        velocity = Vector2.Zero;
+        isWalking = false;
+      }
 
       /*
        * Called these lerp because maybe I'll lerp them in the future to smooth out the movement
        * Right now it's pretty jerky, but it works
        */
       if (needsLerpStairsBottom) {
-        Position = StairsBottom;
+        Position = currentStairs.BottomPoint;
         needsLerpStairsBottom = false;
       } else if (needsLerpStairsTop) {
-        Position = StairsTop;
+        Position = currentStairs.TopPoint;
         needsLerpStairsTop = false;
       } else {
-        // bottom of the stairs
-        if (Position.y >= StairsBottom.y) {
-          Position = new Vector2(Position.x, StairsBottom.y);
-          isOnStairs = false;
+        if (Position.y >= currentStairs.BottomPoint.y) {
+          // bottom of the stairs
+          Position = new Vector2(Position.x, currentStairs.BottomPoint.y);
+          currentStairs = null;
+        } else if (Position.y < currentStairs.TopPoint.y - 1) {
+          // top of the stairs, gets a little leeway since you're passing through the collider sometimes
+          Position = new Vector2(Position.x, currentStairs.TopPoint.y);
+          currentStairs = null;
         }
-        // top of the stairs, gets a little leeway since you're passing through the collider sometimes
-        if (Position.y < StairsTop.y - 1) {
-          Position = new Vector2(Position.x, StairsTop.y);
-          isOnStairs = false;
-        }
-      }
-
-      if (Input.IsActionPressed("move_up") || Input.IsActionPressed(alternateUpInput)) {
-        velocity = upStairsDirection * stairsSpeed;
-        sprite.Scale = upScale;
-        isWalking = true;
-        isGoingUpStairs = true;
-      } else if (Input.IsActionPressed("move_down") || Input.IsActionPressed(alternateDownInput)) {
-        velocity = upStairsDirection * stairsSpeed * -1;
-        sprite.Scale = downScale;
-        isWalking = true;
-      } else {
-        velocity = Vector2.Zero;
-        isWalking = false;
       }
     } else if (isJumping) {
       /*
@@ -97,11 +91,11 @@ public class Simon : KinematicBody2D {
         isWalking = true;
       }
 
-      if (NearStairsBottom && Input.IsActionPressed("move_up")) {
-        isOnStairs = true;
+      if (NearStairsBottom != null && Input.IsActionPressed("move_up")) {
+        currentStairs = NearStairsBottom;
         needsLerpStairsBottom = true;
-      } else if (NearStairsTop && Input.IsActionPressed("move_down")) {
-        isOnStairs = true;
+      } else if (NearStairsTop != null && Input.IsActionPressed("move_down")) {
+        currentStairs = NearStairsTop;
         needsLerpStairsTop = true;
       } else if (Input.IsActionPressed("move_down")) {
         isDucking = true;
@@ -114,7 +108,7 @@ public class Simon : KinematicBody2D {
     }
 
     // physics stuff for movement
-    if (!isOnStairs) {
+    if (currentStairs == null) {
       velocity.y += gravity * delta;
     }
     velocity = MoveAndSlide(velocity, Vector2.Up);
@@ -122,13 +116,13 @@ public class Simon : KinematicBody2D {
     // animation swapping
     if (isJumping) {
       animationPlayer.Play("jump");
-    } else if (isWalking && isOnStairs) {
+    } else if (isWalking && currentStairs != null) {
       if (isGoingUpStairs) {
         animationPlayer.Play("upstairs");
       } else {
         animationPlayer.Play("downstairs");
       }
-    } else if (isOnStairs) {
+    } else if (currentStairs != null) {
       animationPlayer.Stop(); // freeze the walking animation on its current frame
     } else if (isWalking) {
       animationPlayer.Play("walk");
@@ -136,20 +130,6 @@ public class Simon : KinematicBody2D {
       animationPlayer.Play("jump");
     } else {
       animationPlayer.Play("stand");
-    }
-  }
-
-  private void GetAlternateStairsInputs(out string alternateDownInput, out string alternateUpInput, out Vector2 upScale, out Vector2 downScale) {
-    if (upStairsDirection.x > 0) {
-      alternateUpInput = "move_right";
-      alternateDownInput = "move_left";
-      upScale = new Vector2(-1, 1);
-      downScale = new Vector2(1, 1);
-    } else {
-      alternateUpInput = "move_left";
-      alternateDownInput = "move_right";
-      upScale = new Vector2(1, 1);
-      downScale = new Vector2(-1, 1);
     }
   }
 }
