@@ -8,11 +8,10 @@ public class Simon : KinematicBody2D {
   private float jumpX = 0;
 
   private StairsInfo currentStairs;
-  private bool needsLerpStairsBottom = false;
-  private bool needsLerpStairsTop = false;
-
   public StairsInfo NearStairsBottom { get; set; }
   public StairsInfo NearStairsTop { get; set; }
+  private bool needsLerpStairsBottom = false;
+  private bool needsLerpStairsTop = false;
 
   [Export]
   private bool isWhipping = false; // controlled by the animation player
@@ -67,7 +66,7 @@ public class Simon : KinematicBody2D {
           Position = new Vector2(Position.x, currentStairs.BottomPoint.y);
           currentStairs = null;
         } else if (Position.y < currentStairs.TopPoint.y - 1) {
-          // top of the stairs, gets a little leeway since you're passing through the collider sometimes
+          // top of the stairs, gets a little leeway since you're passing through the floor collider sometimes
           Position = new Vector2(Position.x, currentStairs.TopPoint.y);
           currentStairs = null;
         }

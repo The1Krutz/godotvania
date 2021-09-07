@@ -7,10 +7,7 @@ public class Stairs : Node2D {
   public override void _Ready() {
     path = GetNode<Line2D>("path");
 
-    var bottom = path.Points[0] + Position;
-    var top = path.Points[1] + Position;
-
-    Info = new StairsInfo(bottom, top);
+    Info = new StairsInfo(path.Points[0] + Position, path.Points[1] + Position);
   }
 
   public void OnBottomBodyEntered(Node body) {
