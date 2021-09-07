@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Sprites/level 1 set 1.png" type="Texture" id=1]
+[ext_resource path="res://Levels/Stairs/2x2 UR.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Levels/Stairs/4x4 UR.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Levels/Stairs/4x4 UL.tscn" type="PackedScene" id=4]
 
@@ -126,11 +127,14 @@ __meta__ = {
 [node name="stairs 4-UR" parent="stairs" instance=ExtResource( 3 )]
 position = Vector2( 336, 160 )
 
-[node name="stairs 4-UR2" parent="stairs" instance=ExtResource( 3 )]
-position = Vector2( 832, 80 )
-
 [node name="stairs 4-UL" parent="stairs" instance=ExtResource( 4 )]
 position = Vector2( 560, 160 )
+
+[node name="stairs 4-UR2" parent="stairs" instance=ExtResource( 2 )]
+position = Vector2( 832, 80 )
+
+[node name="stairs 4-UL3" parent="stairs" instance=ExtResource( 4 )]
+position = Vector2( 928, 48 )
 
 [node name="stairs 4-UL2" parent="stairs" instance=ExtResource( 4 )]
 position = Vector2( 896, 144 )
