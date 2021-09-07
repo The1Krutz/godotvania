@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Sprites/level 1 set 1.png" type="Texture" id=1]
-[ext_resource path="res://Levels/Stairs/4x4 UR.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Levels/Stairs/4x4 UL.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Levels/Stairs/Right 2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Levels/Stairs/Right 4.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Levels/Stairs/Left 4.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Levels/Stairs/Left 5.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -123,14 +125,17 @@ __meta__ = {
 
 [node name="stairs" type="Node2D" parent="."]
 
-[node name="stairs 4-UR" parent="stairs" instance=ExtResource( 3 )]
+[node name="Right 4 x1" parent="stairs" instance=ExtResource( 3 )]
 position = Vector2( 336, 160 )
 
-[node name="stairs 4-UR2" parent="stairs" instance=ExtResource( 3 )]
-position = Vector2( 832, 80 )
-
-[node name="stairs 4-UL" parent="stairs" instance=ExtResource( 4 )]
+[node name="Left 4 x1" parent="stairs" instance=ExtResource( 4 )]
 position = Vector2( 560, 160 )
 
-[node name="stairs 4-UL2" parent="stairs" instance=ExtResource( 4 )]
+[node name="Right 4 x2" parent="stairs" instance=ExtResource( 2 )]
+position = Vector2( 832, 80 )
+
+[node name="Left 4 x2" parent="stairs" instance=ExtResource( 4 )]
 position = Vector2( 896, 144 )
+
+[node name="Left 5" parent="stairs" instance=ExtResource( 5 )]
+position = Vector2( 928, 48 )
