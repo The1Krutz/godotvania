@@ -1,13 +1,8 @@
 using Godot;
-using System;
 
-public class GroundCandle : Node2D
-{
-    
-    
-    public override void _Ready()
-    {
-        
-    }
-
+public class GroundCandle : Node2D {
+  public void OnAreaEntered(Area2D area) {
+      // drop loot later
+      QueueFree();
+  }
 }
