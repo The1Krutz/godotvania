@@ -4,7 +4,6 @@ namespace Tests.Examples {
   // Developers may use the [Title] attribute on a Test which will then use string as the name of the Test in the Results View
   [Title("My Example Test")]
 
-
   // See target methods for more information
   [Start(nameof(RunBeforeTestClass))]
   [Pre(nameof(RunBeforeTestMethod))]
