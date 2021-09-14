@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public class Simon : KinematicBody2D {
@@ -12,9 +13,12 @@ public class Simon : KinematicBody2D {
   public StairsInfo NearStairsTop { get; set; }
   private bool needsLerpStairsBottom = false;
   private bool needsLerpStairsTop = false;
+  private bool isGoingUpStairs = false;
+  private bool IsOnStairs => currentStairs != null;
 
   [Export]
   private bool isWhipping = false; // controlled by the animation player
+  private WhipLevel currentWhip = WhipLevel.Basic;
 
   private Vector2 velocity = new Vector2();
 
@@ -24,16 +28,33 @@ public class Simon : KinematicBody2D {
   public override void _Ready() {
     animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
     sprite = GetNode<Sprite>("Sprite");
+
+    isWhipping = false;
+    animationPlayer.Play("stand");
   }
 
   public override void _PhysicsProcess(float delta) {
     bool isWalking = false;
     bool isDucking = false;
     bool isJumping = !IsOnFloor();
-    bool isGoingUpStairs = false;
+
+    if (isWhipping) {
+      // continue existing trajectory, for jumping/falling
+      if (IsOnStairs) {
+        velocity = Vector2.Zero;
+      } else {
+        velocity.y += gravity * delta;
+      }
+      if (IsOnFloor()) {
+        velocity = Vector2.Zero;
+      }
+      velocity = MoveAndSlide(velocity, Vector2.Up);
+
+      return;
+    }
 
     // movement handling
-    if (currentStairs != null) {
+    if (IsOnStairs) {
       isJumping = false;
 
       if (Input.IsActionPressed("move_up") || Input.IsActionPressed(currentStairs.AlternateUpInput)) {
@@ -45,6 +66,7 @@ public class Simon : KinematicBody2D {
         velocity = currentStairs.UpStairsDirection * stairsSpeed * -1;
         sprite.Scale = currentStairs.DownScale;
         isWalking = true;
+        isGoingUpStairs = false;
       } else {
         velocity = Vector2.Zero;
         isWalking = false;
@@ -78,6 +100,7 @@ public class Simon : KinematicBody2D {
        */
       velocity.x = jumpX;
     } else {
+      // stuck in place when whipping
       velocity.x = 0;
       jumpX = 0;
       if (Input.IsActionPressed("move_right")) {
@@ -106,8 +129,14 @@ public class Simon : KinematicBody2D {
       }
     }
 
+    // whipping stuff
+    if (Input.IsActionJustPressed("primary_attack")) {
+      PlayWhipAnimation(isDucking, isGoingUpStairs, currentWhip);
+      return;
+    }
+
     // physics stuff for movement
-    if (currentStairs == null) {
+    if (!IsOnStairs) {
       velocity.y += gravity * delta;
     }
     velocity = MoveAndSlide(velocity, Vector2.Up);
@@ -131,4 +160,61 @@ public class Simon : KinematicBody2D {
       animationPlayer.Play("stand");
     }
   }
+
+  private void PlayWhipAnimation(bool isDucking, bool isGoingUpStairs, WhipLevel currentWhip) {
+    /**
+     * Most of these animations don't exist yet, but the Print statements accurately reflect which animation *should* be played once they get added
+     */
+    switch (currentWhip) {
+      case WhipLevel.Basic:
+        if (IsOnStairs) {
+          if (isGoingUpStairs) {
+            GD.Print("upstairs basic");
+            animationPlayer.Play("whip-upstairs-basic");
+          } else {
+            GD.Print("downstairs basic");
+            animationPlayer.Play("whip-downstairs-basic");
+          }
+        } else if (isDucking) {
+          GD.Print("ducking basic");
+          animationPlayer.Play("whip-ducking-basic");
+        } else {
+          GD.Print("standing basic");
+          animationPlayer.Play("whip-standing-basic");
+        }
+        break;
+      case WhipLevel.Short:
+        if (IsOnStairs) {
+          if (isGoingUpStairs) {
+            GD.Print("upstairs short");
+          } else {
+            GD.Print("downstairs short");
+          }
+        } else if (isDucking) {
+          GD.Print("ducking short");
+        } else {
+          GD.Print("standing short");
+        }
+        break;
+      case WhipLevel.Long:
+        if (IsOnStairs) {
+          if (isGoingUpStairs) {
+            GD.Print("upstairs long");
+          } else {
+            GD.Print("downstairs long");
+          }
+        } else if (isDucking) {
+          GD.Print("ducking long");
+        } else {
+          GD.Print("standing long");
+        }
+        break;
+    }
+  }
+}
+
+public enum WhipLevel {
+  Basic,
+  Short,
+  Long
 }
