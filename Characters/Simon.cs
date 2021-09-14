@@ -168,17 +168,13 @@ public class Simon : KinematicBody2D {
       case WhipLevel.Basic:
         if (IsOnStairs) {
           if (isGoingUpStairs) {
-            GD.Print("upstairs basic");
             animationPlayer.Play("whip-upstairs-basic");
           } else {
-            GD.Print("downstairs basic");
             animationPlayer.Play("whip-downstairs-basic");
           }
         } else if (isDucking) {
-          GD.Print("ducking basic");
           animationPlayer.Play("whip-ducking-basic");
         } else {
-          GD.Print("standing basic");
           animationPlayer.Play("whip-standing-basic");
         }
         break;

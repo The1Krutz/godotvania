@@ -185,7 +185,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=16]
 length = 0.3
 loop = true
 step = 0.15
@@ -445,7 +445,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=17]
 resource_name = "whip-standing-basic"
 length = 0.34
 step = 0.017
@@ -632,11 +632,11 @@ shape = SubResource( 2 )
 anims/downstairs = SubResource( 3 )
 anims/jump = SubResource( 4 )
 anims/stand = SubResource( 5 )
-anims/upstairs = SubResource( 7 )
+anims/upstairs = SubResource( 16 )
 anims/walk = SubResource( 8 )
 anims/whip-downstairs-basic = SubResource( 13 )
 anims/whip-ducking-basic = SubResource( 10 )
-anims/whip-standing-basic = SubResource( 6 )
+anims/whip-standing-basic = SubResource( 17 )
 anims/whip-upstairs-basic = SubResource( 11 )
 
 [node name="Sprite" type="Sprite" parent="."]
