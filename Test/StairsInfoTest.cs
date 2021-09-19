@@ -7,7 +7,6 @@ namespace Godotvania.Test {
   public class StairsInfoTest : WAT.Test {
     [Test]
     public void UpLeftTest() {
-      GD.Print("tomato 1");
       Vector2 top = new Vector2(-5, -5);
       Vector2 bottom = new Vector2(0, 0);
       StairsInfo result = new StairsInfo(bottom, top);
@@ -17,7 +16,6 @@ namespace Godotvania.Test {
 
     [Test]
     public void UpLeftTest2() {
-      GD.Print("tomato 2");
       Vector2 top = new Vector2(-5, -5);
       Vector2 bottom = new Vector2(0, 0);
       StairsInfo result = new StairsInfo(bottom, top);
@@ -27,7 +25,6 @@ namespace Godotvania.Test {
 
     [Test]
     public void UpRightTest() {
-      GD.Print("tomato 3");
       Vector2 top = new Vector2(5, -5);
       Vector2 bottom = new Vector2(0, 0);
       StairsInfo result = new StairsInfo(bottom, top);
