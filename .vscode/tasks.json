@@ -28,7 +28,10 @@
         "isDefault": true
       },
       "type": "shell",
-      "command": "~/Repos/Godot_v3.3-stable_mono_x11_64/Godot_v3.3-stable_mono_x11.64 addons/WAT/cli.tscn run=all"
+      "command": "~/Repos/Godot_v3.3-stable_mono_x11_64/Godot_v3.3-stable_mono_x11.64 addons/WAT/cli.tscn run=all",
+      "dependsOn": [
+        "build"
+      ]
     }
   ]
 }
