@@ -15,15 +15,6 @@ namespace Godotvania.Test {
     }
 
     [Test]
-    public void UpLeftTest2() {
-      Vector2 top = new Vector2(-5, -5);
-      Vector2 bottom = new Vector2(0, 0);
-      StairsInfo result = new StairsInfo(bottom, top);
-
-      Assert.IsEqual(result.AlternateUpInput, "move_left");
-    }
-
-    [Test]
     public void UpRightTest() {
       Vector2 top = new Vector2(5, -5);
       Vector2 bottom = new Vector2(0, 0);
