@@ -1,6 +1,6 @@
 using System;
 
-namespace Tests.Examples {
+namespace Godotvania.Test {
   // Developers may use the [Title] attribute on a Test which will then use string as the name of the Test in the Results View
   [Title("My Example Test")]
 
@@ -51,22 +51,22 @@ namespace Tests.Examples {
     }
 
     public void RunBeforeTestClass() {
-      Console.WriteLine("Developers may target a method with the" +
+      Console.WriteLine("Developers may target a method with the " +
       "[Start] attribute to execute code before any test method is run");
     }
 
     public void RunBeforeTestMethod() {
-      Console.WriteLine("Developers may target a method with the" +
+      Console.WriteLine("Developers may target a method with the " +
       "[Pre] attribute to execute code before each test method is run");
     }
 
     public void RunAfterTestMethod() {
-      Console.WriteLine("Developers may target a method with the" +
+      Console.WriteLine("Developers may target a method with the " +
       "[Post] attribute to execute code after each test method is run");
     }
 
     public void RunAfterTestClass() {
-      Console.WriteLine("Developers may target a method with the" +
+      Console.WriteLine("Developers may target a method with the " +
       "[End] attribute to execute after all tests method have run");
     }
   }
