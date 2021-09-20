@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace Godotvania {
@@ -26,11 +27,14 @@ namespace Godotvania {
     private Sprite sprite;
 
     public override void _Ready() {
+      // get references to other useful things
       animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
       sprite = GetNode<Sprite>("Sprite");
 
+      // set defaults
       isWhipping = false;
       animationPlayer.Play("stand");
+      FaceRight();
     }
 
     public override void _PhysicsProcess(float delta) {
@@ -105,11 +109,11 @@ namespace Godotvania {
         jumpX = 0;
         if (Input.IsActionPressed("move_right")) {
           velocity.x += groundSpeed;
-          sprite.Scale = new Vector2(-1, 1);
+          FaceRight();
           isWalking = true;
         } else if (Input.IsActionPressed("move_left")) {
           velocity.x -= groundSpeed;
-          sprite.Scale = new Vector2(1, 1);
+          FaceLeft();
           isWalking = true;
         }
 
@@ -159,6 +163,14 @@ namespace Godotvania {
       } else {
         animationPlayer.Play("stand");
       }
+    }
+
+    private void FaceRight() {
+      sprite.Scale = new Vector2(-1, 1);
+    }
+
+    private void FaceLeft() {
+      sprite.Scale = new Vector2(1, 1);
     }
 
     private void PlayWhipAnimation(bool isDucking, bool isGoingUpStairs, WhipLevel currentWhip) {
