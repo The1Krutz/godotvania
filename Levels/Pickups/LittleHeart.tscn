@@ -9,22 +9,22 @@ extents = Vector2( 4, 4 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 1, 1 )
 
-[node name="LittleHeart" type="Area2D"]
+[node name="RigidBody2D" type="RigidBody2D"]
+
+[node name="LittleHeart" type="Area2D" parent="."]
 collision_mask = 4
 script = ExtResource( 2 )
 
-[node name="pickupBox" type="CollisionShape2D" parent="."]
+[node name="pickupBox" type="CollisionShape2D" parent="LittleHeart"]
 position = Vector2( 0, -4 )
 shape = SubResource( 1 )
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-
-[node name="physicsBox" type="CollisionShape2D" parent="RigidBody2D"]
+[node name="physicsBox" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -1 )
 shape = SubResource( 2 )
 
-[node name="small heart" type="Sprite" parent="RigidBody2D"]
+[node name="small heart" type="Sprite" parent="."]
 position = Vector2( 0, -4 )
 texture = ExtResource( 1 )
 
-[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
+[connection signal="area_entered" from="LittleHeart" to="LittleHeart" method="OnAreaEntered"]

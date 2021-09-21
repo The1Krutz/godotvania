@@ -13,7 +13,7 @@ namespace Godotvania {
       // do the logic later
       GD.Print("LittleHeart.OnAreaEntered");
       EmitSignal(nameof(CollectHeart), 1);
-      QueueFree();
+      GetParent().QueueFree();
     }
   }
 }
