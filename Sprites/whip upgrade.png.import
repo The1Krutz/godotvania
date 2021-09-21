@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pickups.png-b668109d53dc4266e64807733fbb4654.stex"
+path="res://.import/whip upgrade.png-b7717d5dd584fd39fa3fbbcc6145fe93.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/pickups.png"
-dest_files=[ "res://.import/pickups.png-b668109d53dc4266e64807733fbb4654.stex" ]
+source_file="res://Sprites/whip upgrade.png"
+dest_files=[ "res://.import/whip upgrade.png-b7717d5dd584fd39fa3fbbcc6145fe93.stex" ]
 
 [params]
 

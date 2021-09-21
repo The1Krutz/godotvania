@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stand walk jump stairs death.png-1c67059bb5e06cc21ffaaf58be64919f.stex"
+path="res://.import/big heart.png-eda40ac99e4a4ae46b079c4f322861f3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/stand walk jump stairs death.png"
-dest_files=[ "res://.import/stand walk jump stairs death.png-1c67059bb5e06cc21ffaaf58be64919f.stex" ]
+source_file="res://Sprites/big heart.png"
+dest_files=[ "res://.import/big heart.png-eda40ac99e4a4ae46b079c4f322861f3.stex" ]
 
 [params]
 
