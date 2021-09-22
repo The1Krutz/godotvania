@@ -14,6 +14,7 @@ extents = Vector2( 1, 1 )
 [node name="PickupBox" type="Area2D" parent="."]
 collision_mask = 4
 script = ExtResource( 2 )
+pickupType = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupBox"]
 position = Vector2( 0, -6 )
