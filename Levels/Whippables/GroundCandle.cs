@@ -33,10 +33,9 @@ namespace Godotvania {
         PickupType.WhipUpgrade => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/WhipUpgrade.tscn"),
         PickupType.BigHeart => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/BigHeart.tscn"),
         PickupType.MoneyBag => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/MoneyBag.tscn"),
-        // anything below this line defaults to little heart because the intended thing doesn't exist yet
-        PickupType.DoubleShot => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/LittleHeart.tscn"),
-        PickupType.TripleShot => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/LittleHeart.tscn"),
-        PickupType.Rosary => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/LittleHeart.tscn"),
+        PickupType.DoubleShot => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/DoubleShot.tscn"),
+        PickupType.TripleShot => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/TripleShot.tscn"),
+        PickupType.Rosary => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/Rosary.tscn"),
         _ => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/LittleHeart.tscn"),
       };
     }
