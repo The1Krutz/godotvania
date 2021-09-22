@@ -197,7 +197,6 @@ position = Vector2( 160, 161 )
 
 [node name="GroundCandle2" parent="whippables" instance=ExtResource( 6 )]
 position = Vector2( 383, 161 )
-drops = 2
 
 [node name="GroundCandle3" parent="whippables" instance=ExtResource( 6 )]
 position = Vector2( 671, 161 )
@@ -214,3 +213,7 @@ drops = 2
 [node name="GroundCandle3" parent="test stuff" instance=ExtResource( 6 )]
 position = Vector2( 256, 154 )
 drops = 1
+
+[node name="GroundCandle4" parent="test stuff" instance=ExtResource( 6 )]
+position = Vector2( 272, 154 )
+drops = 3

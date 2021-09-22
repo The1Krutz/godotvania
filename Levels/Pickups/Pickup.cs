@@ -24,5 +24,9 @@ namespace Godotvania {
     LittleHeart,
     BigHeart,
     WhipUpgrade,
+    MoneyBag,
+    DoubleShot,
+    TripleShot,
+    Rosary,
   }
 }
