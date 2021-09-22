@@ -10,6 +10,7 @@ extents = Vector2( 4, 4 )
 extents = Vector2( 1, 1 )
 
 [node name="LittleHeart" type="RigidBody2D"]
+gravity_scale = 5.0
 
 [node name="PickupBox" type="Area2D" parent="."]
 collision_mask = 4
