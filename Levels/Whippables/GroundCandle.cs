@@ -29,9 +29,13 @@ namespace Godotvania {
     private PackedScene GetDropScene() {
       return drops switch
       {
-        PickupType.BigHeart => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/BigHeart.tscn"),
-        PickupType.WhipUpgrade => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/WhipUpgrade.tscn"),
         PickupType.LittleHeart => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/LittleHeart.tscn"),
+        PickupType.WhipUpgrade => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/WhipUpgrade.tscn"),
+        PickupType.BigHeart => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/BigHeart.tscn"),
+        PickupType.MoneyBag => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/MoneyBag.tscn"),
+        PickupType.DoubleShot => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/DoubleShot.tscn"),
+        PickupType.TripleShot => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/TripleShot.tscn"),
+        PickupType.Rosary => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/Rosary.tscn"),
         _ => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/LittleHeart.tscn"),
       };
     }
