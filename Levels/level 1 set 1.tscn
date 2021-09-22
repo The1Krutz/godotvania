@@ -6,9 +6,11 @@
 [ext_resource path="res://Levels/Stairs/Left 4.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Levels/Stairs/Left 5.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Levels/Whippables/GroundCandle.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Levels/Pickups/LittleHeart.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 1 )
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 8 )
 
 [node name="level 1 set 1" type="Node2D"]
@@ -25,107 +27,150 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="floor" type="StaticBody2D" parent="floors and walls"]
-position = Vector2( 448, 104 )
+[node name="thin" type="Node2D" parent="floors and walls"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="thinfloor" type="StaticBody2D" parent="floors and walls/thin"]
+position = Vector2( 448, 97 )
 scale = Vector2( 8, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="floors and walls/floor"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floors and walls/thin/thinfloor"]
 shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="floor10" type="StaticBody2D" parent="floors and walls"]
-position = Vector2( -8, 80 )
-scale = Vector2( 1, 10 )
+[node name="thinfloor2" type="StaticBody2D" parent="floors and walls/thin"]
+position = Vector2( 816, 81 )
+scale = Vector2( 2, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="floors and walls/floor10"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floors and walls/thin/thinfloor2"]
 shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="floor2" type="StaticBody2D" parent="floors and walls"]
+[node name="thinfloor3" type="StaticBody2D" parent="floors and walls/thin"]
+position = Vector2( 928, 49 )
+scale = Vector2( 8, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floors and walls/thin/thinfloor3"]
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="thick" type="Node2D" parent="floors and walls"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="thickfloor7" type="StaticBody2D" parent="floors and walls/thick"]
 position = Vector2( 344, 168 )
 scale = Vector2( 45, 1 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="floors and walls/floor2"]
-shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="floor3" type="StaticBody2D" parent="floors and walls"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floors and walls/thick/thickfloor7"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="thickfloor6" type="StaticBody2D" parent="floors and walls/thick"]
 position = Vector2( 840, 152 )
 scale = Vector2( 19, 1 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="floors and walls/floor3"]
-shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="floor4" type="StaticBody2D" parent="floors and walls"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floors and walls/thick/thickfloor6"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="thickfloor5" type="StaticBody2D" parent="floors and walls/thick"]
 position = Vector2( 1008, 88 )
 scale = Vector2( 2, 11 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="floors and walls/floor4"]
-shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="floor5" type="StaticBody2D" parent="floors and walls"]
-position = Vector2( 928, 56 )
-scale = Vector2( 8, 1 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="floors and walls/floor5"]
-shape = SubResource( 1 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floors and walls/thick/thickfloor5"]
+shape = SubResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="floor6" type="StaticBody2D" parent="floors and walls"]
-position = Vector2( 816, 88 )
-scale = Vector2( 2, 1 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="floors and walls/floor6"]
-shape = SubResource( 1 )
+[node name="thickfloor4" type="StaticBody2D" parent="floors and walls/thick"]
+position = Vector2( -8, 80 )
+scale = Vector2( 1, 10 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="floor7" type="StaticBody2D" parent="floors and walls"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floors and walls/thick/thickfloor4"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="thickfloor3" type="StaticBody2D" parent="floors and walls/thick"]
 position = Vector2( 744, 40 )
 scale = Vector2( 1, 5 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="floors and walls/floor7"]
-shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="floor8" type="StaticBody2D" parent="floors and walls"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floors and walls/thick/thickfloor3"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="thickfloor2" type="StaticBody2D" parent="floors and walls/thick"]
 position = Vector2( 760, 48 )
 scale = Vector2( 1, 6 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="floors and walls/floor8"]
-shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="floor9" type="StaticBody2D" parent="floors and walls"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floors and walls/thick/thickfloor2"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="thickfloor" type="StaticBody2D" parent="floors and walls/thick"]
 position = Vector2( 728, 64 )
 scale = Vector2( 1, 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="floors and walls/floor9"]
-shape = SubResource( 1 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floors and walls/thick/thickfloor"]
+shape = SubResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="stairs" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Right 4 x1" parent="stairs" instance=ExtResource( 3 )]
 position = Vector2( 336, 160 )
@@ -143,16 +188,25 @@ position = Vector2( 896, 144 )
 position = Vector2( 928, 48 )
 
 [node name="whippables" type="Node2D" parent="."]
-position = Vector2( 0, 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="GroundCandle" parent="whippables" instance=ExtResource( 6 )]
-position = Vector2( 160, 157 )
+position = Vector2( 160, 161 )
 
 [node name="GroundCandle2" parent="whippables" instance=ExtResource( 6 )]
-position = Vector2( 383, 157 )
+position = Vector2( 383, 161 )
+drops = 2
 
 [node name="GroundCandle3" parent="whippables" instance=ExtResource( 6 )]
-position = Vector2( 671, 156 )
+position = Vector2( 671, 161 )
 
-[node name="LittleHeart" parent="." instance=ExtResource( 7 )]
-position = Vector2( 195, 160 )
+[node name="test stuff" type="Node2D" parent="."]
+
+[node name="GroundCandle" parent="test stuff" instance=ExtResource( 6 )]
+position = Vector2( 224, 154 )
+
+[node name="GroundCandle2" parent="test stuff" instance=ExtResource( 6 )]
+position = Vector2( 240, 154 )
+drops = 2

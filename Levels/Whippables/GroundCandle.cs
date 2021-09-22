@@ -2,11 +2,14 @@ using Godot;
 
 namespace Godotvania {
   public class GroundCandle : Node2D {
-    private PackedScene LittleHeartScene;
+    private PackedScene DropScene;
     private AnimationPlayer animationPlayer;
 
+    [Export]
+    public PickupType drops;
+
     public override void _Ready() {
-      LittleHeartScene = ResourceLoader.Load<PackedScene>("res://Levels/Pickups/LittleHeart.tscn");
+      DropScene = GetDropScene();
       animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 
       animationPlayer.Play("idle");
@@ -18,9 +21,19 @@ namespace Godotvania {
     }
 
     public void DropLoot() {
-      RigidBody2D newheart = (RigidBody2D)LittleHeartScene.Instance();
-      newheart.Position = Position + new Vector2(0, -16);
-      GetParent().AddChild(newheart, true);
+      RigidBody2D drop = (RigidBody2D)DropScene.Instance();
+      drop.Position = Position + new Vector2(0, -16);
+      GetParent().AddChild(drop, true);
+    }
+
+    private PackedScene GetDropScene() {
+      return drops switch
+      {
+        PickupType.BigHeart => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/BigHeart.tscn"),
+        PickupType.WhipUpgrade => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/WhipUpgrade.tscn"),
+        PickupType.LittleHeart => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/LittleHeart.tscn"),
+        _ => ResourceLoader.Load<PackedScene>("res://Levels/Pickups/LittleHeart.tscn"),
+      };
     }
   }
 }
